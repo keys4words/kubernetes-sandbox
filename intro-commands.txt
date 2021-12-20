@@ -1,0 +1,13 @@
+kubectl cluster-info # view cluster details
+kubectl create deployment <name> --image=<image-url> # to deploy an app
+kubectl run 
+
+kubectl get nodes/pods/services
+kubectl get nodes -o wide
+
+kubectl describe pods/deployment
+
+kubectl logs <pod_name>
+kubectl exec -it <pod_name> -- bash
+
+kubectl delete service
