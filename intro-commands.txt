@@ -1,11 +1,11 @@
 kubectl cluster-info # view cluster details
-kubectl create deployment <name> --image=<image-url> # to deploy an app
-kubectl run 
+kubectl create deployment <name> --image=<image-url from dockerhub or > # to deploy an app
+kubectl run
 
 kubectl get nodes/pods/services
 kubectl get nodes -o wide
 
-kubectl describe pods/deployment
+kubectl describe pods/deployment <name>
 
 kubectl logs <pod_name>
 kubectl exec -it <pod_name> -- bash
