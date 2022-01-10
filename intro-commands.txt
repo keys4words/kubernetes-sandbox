@@ -2,7 +2,7 @@ kubectl cluster-info # view cluster details
 kubectl create deployment <name> --image=<image-url from dockerhub or > # to deploy an app
 kubectl create -f pod-definition.yml
 
-kubectl run <pod_name>
+kubectl run <pod_name> --image <image_from_dockerhub>
 
 kubectl get nodes/pods/services
 kubectl get nodes -o wide
@@ -13,3 +13,11 @@ kubectl logs <pod_name>
 kubectl exec -it <pod_name> -- bash
 
 kubectl delete service
+
+##### minikube #####
+minikube start/delete/status
+minikube ssh -i ~/.minikube/machines/minikube/id_rsa docker@192.168.99.100
+minikube service <service_name>
+minikube dashboard
+minikube ip
+minikube logs
