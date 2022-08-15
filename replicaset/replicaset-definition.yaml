@@ -9,14 +9,15 @@ metadata:
 spec:
   template:
     metadata:
-      name: myapp-pod
       labels:
         app: myapp
         type: front-end
     spec:
       containers:
         - name: nginx-container
-          image: nginx:1.13
+          image: nginx:1.12
+          ports:
+            - containerPort: 80
   replicas: 3
   selector:
     matchLabels:
