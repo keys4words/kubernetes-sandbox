@@ -19,10 +19,12 @@ kubectl replace -f replicaset-definition.yml
 kubectl scale --replicas=6 -f replicaset-definition.yml
 kubectl scale --replicas=6 replicaset myapp-replicaset
 
+# setting #
+kubectl set image replicaset/name-of-rs name-of-cont=image-name:version
 
 # rollout commands
 kubectl rollout status <deployment_name>
-kubectl rollout undo <deployment_name>
+kubectl rollout undo deployment <deployment_name> --to-revision=2
 
 # Recreate vs RollingUpdate
 

@@ -16,8 +16,15 @@ spec:
     spec:
       containers:
         - name: nginx-container
-          image: nginx
-  replicas: 6
+          image: nginx:1.12
+          ports:
+            - containerPort: 80
+  replicas: 4
   selector:
     matchLabels:
       type: front-end
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
