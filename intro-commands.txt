@@ -13,6 +13,7 @@ kubectl logs <pod_name>
 kubectl exec -it <pod_name> -- bash
 
 kubectl delete service/replicaset
+kubectl delete all --all
 
 # scaling #
 kubectl replace -f replicaset-definition.yml
@@ -25,6 +26,9 @@ kubectl set image replicaset/name-of-rs name-of-cont=image-name:version
 # rollout commands
 kubectl rollout status <deployment_name>
 kubectl rollout undo deployment <deployment_name> --to-revision=2
+
+# port forwarding #
+kubectl port-forward <pod-name> 20001:80
 
 # Recreate vs RollingUpdate
 
