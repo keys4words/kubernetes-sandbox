@@ -30,8 +30,8 @@ kubectl rollout undo deployment <deployment_name> --to-revision=2
 # port forwarding #
 kubectl port-forward <pod-name> 20001:80
 
-# Recreate vs RollingUpdate
-
+# secret #
+kubectl create secret generic/docker-registry/tls <secret-name> --from-literal=key=value
 
 ##### minikube #####
 minikube start/delete/status
