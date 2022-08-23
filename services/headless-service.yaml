@@ -1,8 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-service
+  name: my-headless-service
 spec:
+  clusterIP: None
   selector:
     app: my-app
   ports:

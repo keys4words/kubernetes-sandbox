@@ -33,6 +33,12 @@ kubectl port-forward <pod-name> 20001:80
 # secret #
 kubectl create secret generic/docker-registry/tls <secret-name> --from-literal=key=value
 
+# curl in cluster #
+kubectl run curl --image=radial/busyboxplus:curl -i --tty
+kubectl attach curl -c curl -it
+
+kubectl run -it --rm --generator run-pod/v1 test --image centosadmin/utils --bash
+
 ##### minikube #####
 minikube start/delete/status
 minikube ssh -i ~/.minikube/machines/minikube/id_rsa docker@192.168.99.100
