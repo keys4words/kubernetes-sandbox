@@ -39,6 +39,14 @@ kubectl attach curl -c curl -it
 
 kubectl run -it --rm --generator run-pod/v1 test --image centosadmin/utils --bash
 
+# dashboard #
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.5.0/aio/deploy/recommended.yaml
+
+kubectl -n kubernetes-dashboard create token admin-user
+kubectl proxy
+
+http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
+
 ##### minikube #####
 minikube start/delete/status
 minikube ssh -i ~/.minikube/machines/minikube/id_rsa docker@192.168.99.100
