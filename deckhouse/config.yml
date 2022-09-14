@@ -1,0 +1,33 @@
+# Секция первичной инициализации кластера Deckhouse (InitConfiguration).
+# Используемая версия API Deckhouse.
+apiVersion: deckhouse.io/v1
+# Тип секции конфигурации.
+kind: InitConfiguration
+# Секция с параметрами Deckhouse.
+deckhouse:
+  # Используемый канал обновлений.
+  releaseChannel: Stable
+  # При установке Deckhouse в существующий кластер используется вариант поставки — Minimal.
+  bundle: Default
+  configOverrides:
+    global:
+      modules:
+        # Шаблон для создания Ingress-ресурсов модулей Deckhouse.
+        # Например, Grafana для %s.example.com будет доступна на домене grafana.example.com.
+        # В качестве рабочего примера используется сервис nip.io.
+        publicDomainTemplate: "%s-127-0-0-1.nip.io"
+        https:
+          mode: Disabled
+    # Включение группы модулей, необходимых для работы мониторинга.
+    operatorPrometheusCrdEnabled: true
+    operatorPrometheusEnabled: true
+    prometheusCrdEnabled: true
+    prometheusEnabled: true
+    # В настройках модуля prometheus отключаем запуск longterm Prometheus — для тестирования Deckhouse он избыточен.
+    # Подробнее о longterm Prometheus — https://deckhouse.io/ru/documentation/v1/modules/300-prometheus/
+    prometheus:
+      longtermRetentionDays: 0
+    # Включаем модуль мониторинга control plane кластера.
+    monitoringKubernetesControlPlaneEnabled: true
+    # Включаем модуль установки Ingress-контроллера.
+    ingressNginxEnabled: true
