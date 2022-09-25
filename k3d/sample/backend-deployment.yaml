@@ -6,7 +6,7 @@ metadata:
   labels:
     app: backend
 spec:
-  replicas: 5
+  replicas: 1
   selector:
     matchLabels:
       app: backend
@@ -20,3 +20,6 @@ spec:
           image: autouser/backend:v1.0
           ports:
             - containerPort: 5050
+      nodeSelector:
+        kubernetes.io/hostname: k3d-demo-agent-*
+        worker: true
