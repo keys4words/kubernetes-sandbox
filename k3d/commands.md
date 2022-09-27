@@ -1,9 +1,5 @@
 # create simple cluster
-k3d cluster create demo --agents 2 --servers 1
-# create multinode cluster
-# info "--api-port 6550: expose the Kubernetes API on localhost:6550 (via loadbalancer)"
-# info "--servers 1: create 1 server node"
-# info "--agents 3: create 3 agent nodes"
+k3d cluster create demo --agents 2
 # info "--port 8080:80@loadbalancer: map localhost:8080 to port 80 on the loadbalancer (used for ingress)"
 # info "--volume $(pwd)/sample:/src@all: mount the sub directory sample of the current directory to /src in all nodes (used for code)"
 # info "--wait: wait for all server nodes to be up before returning"
@@ -16,3 +12,11 @@ k3d node create new_agent --role agent --cluster demo --replicas 2
 k3d kubeconfig merge demo --kubeconfig-merge-default --kubeconfig-switch-context
 # operations with cluster
 k3d cluster start/stop/delete demo
+# create cluster with file
+k3d cluster create --config ./myconf.yml
+# dashboard - http://localhost:9000/dashboard/
+k port-forward traefik-xx-xx -n kube-system 9000:9000
+# manual deploy
+k create deploy nginx --image nginx
+k expose deploy nginx --port 80
+k apply -f ingress.yaml
