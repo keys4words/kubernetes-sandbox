@@ -39,6 +39,9 @@ kubectl attach curl -c curl -it
 
 kubectl run -it --rm --generator run-pod/v1 test --image centosadmin/utils --bash
 
+k run -it --rm --image alpine -- sh
+apk add curl --update
+
 # dashboard #
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.5.0/aio/deploy/recommended.yaml
 
