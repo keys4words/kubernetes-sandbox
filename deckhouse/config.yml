@@ -8,7 +8,7 @@ deckhouse:
   # Используемый канал обновлений.
   releaseChannel: Stable
   # При установке Deckhouse в существующий кластер используется вариант поставки — Minimal.
-  bundle: Default
+  bundle: Minimal
   configOverrides:
     global:
       modules:
@@ -31,3 +31,6 @@ deckhouse:
     monitoringKubernetesControlPlaneEnabled: true
     # Включаем модуль установки Ingress-контроллера.
     ingressNginxEnabled: true
+    # my modules section
+    userAuthzEnabled: true
+    dashboardEnabled: true
