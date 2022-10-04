@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-development
+  labels:
+    app: web-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web-app
+  template:
+    metadata:
+      labels:
+        app: web-app
+    spec:
+      containers:
+        - name: web-app
+          image: autouser/web-app:v1.0
+          ports:
+            - containerPort: 5000
+          env:
+          - name: TEMPLATE_DIR
+            value: templates
+          - name: BACKEND_URL
+            value: "backend-service:9090"
