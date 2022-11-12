@@ -23,3 +23,6 @@ k port-forward service/web 1234:80
 k create deploy red --image=jpetazzo/webcolor
 k expose deploy red --port=8000
 k create ingress red --rule=red.localtest.me/*=red:8000
+
+# kustomize
+kustomize build <path-to-folder> | kubectl apply -f -
