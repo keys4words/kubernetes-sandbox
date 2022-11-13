@@ -1,0 +1,7 @@
+apiVersion: v2
+name: helm-in-kind
+description: my Helm chart
+
+type: application
+version: 0.1.1
+appVersion: "1.0"

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ .Release.Name }}-svc"
+  labels:
+    app: go-server
+spec:
+  selector:
+    app: go-server
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
