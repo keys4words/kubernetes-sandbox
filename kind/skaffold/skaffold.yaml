@@ -1,0 +1,14 @@
+apiVersion: skaffold/v3
+kind: Config
+metadata:
+  name: skaffold
+build:
+  artifacts:
+  - image: my-cool-app
+    context: src
+    docker:
+      dockerfile: Dockerfile
+manifests:
+  rawYaml:
+  - k8s/deployment.yml
+  - k8s/service.yml
