@@ -1,5 +1,5 @@
-kubectl cluster-info # view cluster details
-kubectl create deployment <name> --image=<image-url from dockerhub or > # to deploy an app
+kubectl cluster-info
+kubectl create deployment <name> --image=<image-url> --register
 kubectl create -f pod-definition.yml
 
 kubectl run <pod_name> --image <image_from_dockerhub>
@@ -26,6 +26,7 @@ kubectl set image replicaset/name-of-rs name-of-cont=image-name:version
 # rollout commands
 kubectl rollout status <deployment_name>
 kubectl rollout undo deployment <deployment_name> --to-revision=2
+kubectl rollout history deploy <deployment-name>
 
 # port forwarding #
 kubectl port-forward <pod-name> 20001:80
@@ -50,10 +51,33 @@ kubectl proxy
 
 http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
 
-##### minikube #####
+## minikube
 minikube start/delete/status
 minikube ssh -i ~/.minikube/machines/minikube/id_rsa docker@192.168.99.100
 minikube service <service_name>
 minikube dashboard
 minikube ip
 minikube logs
+
+
+## helm
+# find chart to install
+helm search hub <what-i-search>
+# add a chart repo
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo list
+# install chart
+helm install --set grafana.replicaCount=2 grafana bitnami/grafana
+# show list of charts
+helm list
+# show details about chart
+helm status <chart-name>
+# upgrade/delete installation
+helm upgrade grafana
+helm upgrade --install sample-app sample/conf/charts/sample-app --namespace demo --set app.image=sample-app:local
+# rollback
+helm rollback grafana <revision-number>
+# create helm chart
+helm create <name>
+# package helm chart
+helm package <name-package>

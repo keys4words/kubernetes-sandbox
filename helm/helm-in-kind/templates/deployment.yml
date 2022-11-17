@@ -9,10 +9,12 @@ spec:
   selector:
     matchLabels:
       app: go-server
+      cluster: dev
   template:
     metadata:
       labels:
         app: go-server
+        cluster: dev
     spec:    
       containers:
       - name: goserver
