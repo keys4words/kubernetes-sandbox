@@ -4,7 +4,7 @@ kubectl create -f pod-definition.yml
 
 kubectl run <pod_name> --image <image_from_dockerhub>
 
-kubectl get nodes/pods/services/replicaset
+kubectl get nodes/po/svc/rs/deploy/ds
 kubectl get nodes -o wide
 
 kubectl describe pods/deployment <name>
