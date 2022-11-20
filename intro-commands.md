@@ -4,8 +4,9 @@ kubectl create -f pod-definition.yml
 
 kubectl run <pod_name> --image <image_from_dockerhub>
 
-kubectl get nodes/po/svc/rs/deploy/ds
+kubectl get nodes/po/svc/rs/deploy/ds/cronjob/ev
 kubectl get nodes -o wide
+kubectl get event --field-selector involvedObject.name=myapp-pod
 
 kubectl describe pods/deployment <name>
 
