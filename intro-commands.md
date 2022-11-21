@@ -4,7 +4,7 @@ kubectl create -f pod-definition.yml
 
 kubectl run <pod_name> --image <image_from_dockerhub>
 
-kubectl get nodes/po/svc/rs/deploy/ds/cronjob/ev
+kubectl get nodes/po/svc/rs/deploy/ds/cronjob/cm/secret
 kubectl get nodes -o wide
 kubectl get event --field-selector involvedObject.name=myapp-pod
 
@@ -12,6 +12,7 @@ kubectl describe pods/deployment <name>
 
 kubectl logs <pod_name>
 kubectl exec -it <pod_name> -- bash
+kubectl exec <pod_name> -- command (ex: printenv)
 
 kubectl delete service/replicaset
 kubectl delete all --all
@@ -34,6 +35,7 @@ kubectl port-forward <pod-name> 20001:80
 
 # secret #
 kubectl create secret generic/docker-registry/tls <secret-name> --from-literal=key=value
+kubectl create secret generic user-creds --from-file=.\secrets\username.txt --from-file=.\secrets\password.txt
 
 # curl in cluster #
 kubectl run curl --image=radial/busyboxplus:curl -i --tty
