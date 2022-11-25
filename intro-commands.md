@@ -54,6 +54,9 @@ kubectl proxy
 
 http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
 
+# roles
+k auth can-i get po -n default --as <user-name>
+
 ## minikube
 minikube start/delete/status
 minikube ssh -i ~/.minikube/machines/minikube/id_rsa docker@192.168.99.100
