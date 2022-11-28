@@ -57,6 +57,9 @@ http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kube
 # roles
 k auth can-i get po -n default --as <user-name>
 
+# generate yaml
+k run nginx/deploy --image=nginx --dry-run=client -o yaml
+
 ## minikube
 minikube start/delete/status
 minikube ssh -i ~/.minikube/machines/minikube/id_rsa docker@192.168.99.100
