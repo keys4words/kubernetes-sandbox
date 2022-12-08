@@ -28,7 +28,8 @@ kubectl set image replicaset/name-of-rs name-of-cont=image-name:version
 # rollout commands
 kubectl rollout status <deployment_name>
 kubectl rollout undo deployment <deployment_name> --to-revision=2
-kubectl rollout history deploy <deployment-name>
+kubectl rollout history deploy <deployment-name>        --revision=3
+kubectl edit deploy <deployement-name> --record
 
 # port forwarding #
 kubectl port-forward <pod-name> 20001:80
@@ -45,6 +46,9 @@ kubectl run -it --rm --generator run-pod/v1 test --image centosadmin/utils --bas
 
 k run -it --rm --image alpine -- sh
 apk add curl --update
+
+# ip a & ping in nginx
+apt update && apt install iproute2 iputils-ping
 
 # dashboard #
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.5.0/aio/deploy/recommended.yaml
