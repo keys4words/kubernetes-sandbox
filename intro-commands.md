@@ -31,6 +31,15 @@ kubectl rollout undo deployment <deployment_name> --to-revision=2
 kubectl rollout history deploy <deployment-name>        --revision=3
 kubectl edit deploy <deployement-name> --record
 
+# context
+kubectl config get-contexts
+kubectl config current-context
+kubectl config use-context <cluster-name>
+
+# copy from/to pod
+kubectl cp {{namespace}}/{{podname}}:path/to/directory /local/path  # copy file from pod
+kubectl cp /local/path namespace/podname:path/to/directory          # copy file to pod
+
 # port forwarding #
 kubectl port-forward <pod-name> 20001:80
 
