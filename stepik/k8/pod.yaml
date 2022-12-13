@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: static-web
+  namespace: dev
+  labels:
+    app: goweb
+spec:
+  containers:
+    - name: web
+      image: localhost:5000/goserver:1.0
+      ports:
+        - name: web
+          containerPort: 8080
+          protocol: TCP

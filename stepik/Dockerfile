@@ -1,11 +1,12 @@
-FROM golang:1.10 AS builder                    
-WORKDIR /app
+FROM golang:alpine AS builder
+
+# image for build stage
+WORKDIR /build
 COPY ./app/ .
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
+RUN go build -o app app.go
 
-
-FROM alpine:latest
-WORKDIR /root/
-COPY --from=builder ./app .
-EXPOSE 8080
+# image for deploy stage
+FROM alpine
+WORKDIR /build
+COPY --from=builder /build/app /build/app
 CMD ["./app"]

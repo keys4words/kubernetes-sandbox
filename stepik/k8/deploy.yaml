@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: goapp
-          image: ksxack/lesson1:v0.2
+          image: localhost:5000/goserver:1.0
           ports:
           - containerPort: 8080
