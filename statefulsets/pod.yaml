@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+  labels:
+    app: mysql
+spec:
+  containers:
+    - name: mysql
+      image: mysql
+  subdomain: mysql-hsvc
+  hostname: mysql-pod
