@@ -31,11 +31,6 @@ kubectl rollout undo deployment <deployment_name> --to-revision=2
 kubectl rollout history deploy <deployment-name>        --revision=3
 kubectl edit deploy <deployement-name> --record
 
-# context
-kubectl config get-contexts
-kubectl config current-context
-kubectl config use-context <cluster-name>
-
 # copy from/to pod
 kubectl cp {{namespace}}/{{podname}}:path/to/directory /local/path  # copy file from pod
 kubectl cp /local/path namespace/podname:path/to/directory          # copy file to pod
@@ -67,8 +62,14 @@ kubectl proxy
 
 http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
 
-# roles
-k auth can-i get po -n default --as <user-name>
+# roles - check access
+k auth can-i get/delete/create po/node -n default --as <user-name>
+
+# context & config
+kubectl config view --kubeconfig=<config-name>
+kubectl config get-contexts
+kubectl config current-context
+kubectl config use-context <cluster-name>
 
 # generate yaml
 k run nginx/deploy --image=nginx --dry-run=client -o yaml
@@ -85,10 +86,12 @@ minikube logs
 ## helm
 # find chart to install
 helm search hub <what-i-search>
+helm search repo <repo-name>
 # add a chart repo
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo list
 # install chart
+helm install <release-name> <chart-name|or-chart-folder-path>
 helm install --set grafana.replicaCount=2 grafana bitnami/grafana
 # show list of charts
 helm list
