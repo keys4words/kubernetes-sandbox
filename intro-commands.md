@@ -65,11 +65,15 @@ http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kube
 # roles - check access
 k auth can-i get/delete/create po/node -n default --as <user-name>
 
+# service naming
+<svc-name>.<namespace>.svc.cluster.local
+
 # context & config
 kubectl config view --kubeconfig=<config-name>
 kubectl config get-contexts
 kubectl config current-context
 kubectl config use-context <cluster-name>
+kubectl config set-context <context-name>
 
 # generate yaml
 k run nginx/deploy --image=nginx --dry-run=client -o yaml
