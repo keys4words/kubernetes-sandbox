@@ -68,6 +68,16 @@ k auth can-i get/delete/create po/node -n default --as <user-name>
 # service naming
 <svc-name>.<namespace>.svc.cluster.local
 
+# create service
+kubectl expose pod redis --port=6379 --name redis-service --dry-run=client -o yaml
+kubectl expose pod nginx --type=NodePort --port=80 --name=nginx-service --dry-run=client -o yaml
+
+# taints & tolerations
+kubectl taint nodes <node-name> key=value:NoSchedule|PreferNoSchedule|NoExecute
+
+# label
+kubectl label nodes <node-name> key=value
+
 # context & config
 kubectl config view --kubeconfig=<config-name>
 kubectl config get-contexts
