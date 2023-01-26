@@ -10,7 +10,7 @@ kubectl get event --field-selector involvedObject.name=myapp-pod
 
 kubectl describe pods/deployment <name>
 
-kubectl logs <pod_name>
+kubectl logs <pod_name> <container_name>
 kubectl exec -it <pod_name> -- bash
 kubectl exec <pod_name> -- command (ex: printenv)
 
@@ -54,6 +54,14 @@ apk add curl --update
 # ip a & ping in nginx
 apt update && apt install iproute2 iputils-ping
 
+# show secret
+kubectl get secret <secret-name> -oyaml -> base64 --decode
+
+# drain/cordon node
+kubectl drain <node-name> --ignore-daemonset
+kubectl uncordon <node-name> -> make node available for scheduler
+kubectl cordon <node-name> -> mark node for preventing new scheduling
+
 # dashboard #
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.5.0/aio/deploy/recommended.yaml
 
@@ -71,6 +79,9 @@ k auth can-i get/delete/create po/node -n default --as <user-name>
 # create service
 kubectl expose pod redis --port=6379 --name redis-service --dry-run=client -o yaml
 kubectl expose pod nginx --type=NodePort --port=80 --name=nginx-service --dry-run=client -o yaml
+
+# create configmaps
+kubectl create configmap <name-of-cm> --from-literal=<key>=<value> | --from-file=<path-to-file>
 
 # taints & tolerations
 kubectl taint nodes <node-name> key=value:NoSchedule|PreferNoSchedule|NoExecute
